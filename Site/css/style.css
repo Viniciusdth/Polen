@@ -1,0 +1,29 @@
+body {
+  padding-top: 54px;
+}
+
+/* * {
+  box-sizing: border-box;
+  border: 1px solid red;
+} */
+
+.modal-footer {
+  background: #E9E9E8;
+  display: table;
+}
+
+.modal-body {
+  font-weight: bold;
+  padding-top: 0;
+}
+
+.header-button {
+  float: right;
+}
+
+#modal-close {
+  display: block;
+  margin-right: 15px;
+  padding-top: 5px;
+  font-size: xx-large;
+}
