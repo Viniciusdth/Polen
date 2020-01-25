@@ -1,8 +1,19 @@
-var modal = document.getElementById('id01');
+(function ($) {
+  AddTableRow = function () {
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+    var newRow = $("<tr>");
+    var cols = "";
+
+    cols += '<td>&nbsp;</td>';
+    cols += '<td>&nbsp;</td>';
+    cols += '<td>&nbsp;</td>';
+    cols += '<td>&nbsp;</td>';
+    cols += '<td>';
+    cols += '<a href="#" onclick="RemoveTableRow(this)">deletar</a>';
+    cols += '</td>';
+
+    newRow.append(cols);
+    $("#tabelaOngs").append(newRow);
+    return false;
+  };
+})(jQuery);
