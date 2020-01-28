@@ -27,3 +27,16 @@ body {
   padding-top: 5px;
   font-size: xx-large;
 }
+
+.overviewtable tbody tr td {
+  line-height: normal;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 35px;
+  padding: 10px 0 5px 0;
+  background-color: black;
+}
+
+.active-row {
+  background-color: #28A744!important;
+}

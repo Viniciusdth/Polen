@@ -13,8 +13,9 @@
 
 <body>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="TituloModalLogin"
+  <!-- Modal Cadastro-->
+
+  <div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="tituloModalCadastro"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -24,27 +25,81 @@
           </button>
         </div>
         <div class="modal-body">
-
-          <form>
+          <form id="ModalAddForm">
             <div class="form-group">
-              <label for="exampleInputEmail1">Username</label>
-              <input type="email" class="form-control" id="loginEmail">
+              <label>Nome</label>
+              <input type="text" class="form-control" id="nomeUsuario">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="loginSenha">
+              <label>Slogan</label>
+              <input type="text" class="form-control" id="slogan">
             </div>
-            <button onclick="AddTableRow()" type="button" class="btn btn-default btn-success btn-block">Cadastrar</button>
+            <div class="form-group">
+              <label>Link Site</label>
+              <input type="url" class="form-control" id="linkSite">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="modalCheckbox" name="check">
+              <label>Ativo</label>
+            </div>
+            <button onclick="AddTableRow();" type="button" class="btn btn-default btn-success btn-block"
+              data-dismiss="modal">Cadastrar</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button onclick="clearModalFormFields();" type="submit" class="btn btn-danger"
+            data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- fecha modal-->
 
+  <!-- Modal de ediçao -->
+
+  <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="tituloModalEditar"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="">
+          <button type="button" class=" btn btn-md close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true" id="modal-close">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="ModalEditarForm">
+            <div class="form-group">
+              <label for="editName">Nome</label>
+              <input type="text" name="nome" class="form-control" id="editName">
+            </div>
+            <div class="form-group">
+              <label>Slogan</label>
+              <input type="text" name="slogan" class="form-control" id="editSlogan">
+            </div>
+            <div class="form-group">
+              <label for="editEmail">Link Site</label>
+              <input type="url" name="linkSite" class="form-control" id="editLinkSite">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="editAtivo" name="check" value="">
+              <label>Ativo</label>
+            </div>
+
+            <!-- Input que armazena o id da linha atual -->
+            <input type="text" hidden id="actualTableRowId">
+
+            <button onclick="updateTableRow(); clearModalFormFields();" type="button"
+              class="btn btn-default btn-success btn-block" data-dismiss="modal">Atualizar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button onclick="clearModalFormFields();" type="submit" class="btn btn-danger"
+            data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- fecha modal-->
@@ -56,8 +111,9 @@
       </div>
       <div class="col-7 mt-auto mb-auto">
         <button type="button" class="btn btn-success btn-md header-button" data-toggle="modal"
-          data-target="#modalLogin">Nova
-          Ong</button>
+          data-target="#modalCadastro">
+          Nova Ong &#187;
+        </button>
       </div>
       <div class="col-12">
         <h2 class="h5">Estas são as Ongs do Polen</h2>
@@ -74,24 +130,13 @@
           <th>Ativo</th>
           <th>Configuração</th>
         </tr>
-        <tr>
-          <td>Nome</td>
-          <td>Slogan</td>
-          <td>Link Site</td>
-          <td><input type="checkbox" name="check"></td>
-          <td><a href="#" >editar</a> | <a href="#" onclick="RemoveTableRow(this)">deletar</a> </td>
-        </tr>
-        <tr>
-          <td>Nome</td>
-          <td>Slogan</td>
-          <td>Link Site</td>
-          <td><input type="checkbox" name="check"></td>
-          <td>Configuração</td>
-        </tr>
+
       </tbody>
     </table>
 
   </header>
+
+
 
 
   <!-- abre modal-->
