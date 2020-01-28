@@ -1,11 +1,52 @@
 body {
+  font-family: 'Lato', sans-serif!important;
+  -webkit-font-smoothing: antialiased!important;
   padding-top: 54px;
 }
 
-/* * {
-  box-sizing: border-box;
-  border: 1px solid red;
-} */
+h1.title {
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  color: #632787;
+}
+
+h3.subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  margin: 0;
+}
+
+.table-round-corner {
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  border-collapse: separate;
+  border: 1px solid #ddd!important;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+
+table td {
+  color: #333;
+  padding: 5px;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+table td:last-child {
+  border-right: none;
+}
+
+table th {
+  color: #632787;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+}
 
 .modal-footer {
   background: #E9E9E8;
@@ -19,6 +60,8 @@ body {
 
 .header-button {
   float: right;
+  padding: 8px 24px;
+  border-radius: 10px;
 }
 
 #modal-close {
@@ -28,15 +71,27 @@ body {
   font-size: xx-large;
 }
 
-.overviewtable tbody tr td {
-  line-height: normal;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  height: 35px;
-  padding: 10px 0 5px 0;
-  background-color: black;
+.simple-row:hover {
+  background-color: #7ed32122;
 }
 
 .active-row {
-  background-color: #28A744!important;
+  background-color: #7ed321!important;
+}
+
+.active-row:hover {
+  background-color: #7ed321cc!important;
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+  background-color: #7ed32122;
+}
+
+.table-action:hover {
+  text-decoration: none;
+  color: #632787;
+}
+
+.table-link:hover {
+  color: #632787;
 }

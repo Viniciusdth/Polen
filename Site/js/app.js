@@ -1,10 +1,10 @@
 $(document).ready(function () {
   let index = window.localStorage.getItem('rowIndexes');
 
-  if (index !== null) {
+  if (index) {
     addRowsFromIndex(index.split(","));
   }
-})
+});
 
 function addRowsFromIndex(index) {
   index.forEach(rowName => {
@@ -14,17 +14,17 @@ function addRowsFromIndex(index) {
 }
 
 function populateTable(nome, slogan, linkSite, checkbox, rowName) {
-  let newRow = $(`<tr id="${rowName}" ${checkbox ? "class='active-row'" : ""}>`);
+  let newRow = $(`<tr id="${rowName}" class="simple-row ${checkbox ? "active-row" : ""}" >`);
   let cols = "";
 
   cols += `<td>${nome}</td>`;
   cols += `<td>${slogan}</td>`;
-  cols += `<td><a href="${linkSite}" target="_blank">${linkSite}</a></td>`;
+  cols += `<td><a class="table-link" href="${linkSite}" target="_blank">${linkSite}</a></td>`;
   cols += '<td>';
   cols += `<input type="checkbox" name="checkbox" ${checkbox ? "checked" : ""} onclick="updateLocalStorageCheckbox(this);">`;
   cols += '</td>';
   cols += '<td>';
-  cols += `<a onclick="editTableRow(${rowName})" href="#" data-toggle="modal" data-target="#modalEditar">editar</a> | <a href="#" onclick="RemoveTableRow(${rowName})">deletar</a>`;
+  cols += `<a class="table-action" onclick="editTableRow(${rowName})" href="#" data-toggle="modal" data-target="#modalEditar">editar</a> | <a class="table-action" href="#" onclick="RemoveTableRow(${rowName})">deletar</a>`;
   cols += '</td>';
 
   newRow.append(cols);
@@ -37,9 +37,9 @@ function AddTableRow() {
   let linkSite = $('#linkSite').val()
   let checkbox = $('#modalCheckbox').is(':checked');
 
-  if (this.validateFields(nome, slogan, linkSite) == false) {
-    return alert("por favor, preencha os campos")
-  };
+  // if (this.validateFields(nome, slogan, linkSite) == false) {
+  //   return alert("por favor, preencha os campos")
+  // };
 
   let rowName = this.addRowToLocalStorage(nome, linkSite, slogan, checkbox)
 
@@ -48,12 +48,12 @@ function AddTableRow() {
 
   cols += `<td>${nome}</td>`;
   cols += `<td>${slogan}</td>`;
-  cols += `<td><a href="${linkSite}" target="_blank">${linkSite}</a></td>`;
+  cols += `<td><a class="table-link" href="${linkSite}" target="_blank">${linkSite}</a></td>`;
   cols += '<td>';
   cols += `<input type="checkbox" name="checkbox" ${checkbox ? "checked" : ""} onclick="updateLocalStorageCheckbox(this);">`;
   cols += '</td>';
   cols += '<td>';
-  cols += `<a onclick="editTableRow(${rowName})" href="#" data-toggle="modal" data-target="#modalEditar">editar</a> | <a href="#" onclick="RemoveTableRow(${rowName})">deletar</a>`;
+  cols += `<a class="table-action" onclick="editTableRow(${rowName})" href="#" data-toggle="modal" data-target="#modalEditar">editar</a> | <a class="table-action" href="#" onclick="RemoveTableRow(${rowName})">deletar</a>`;
   cols += '</td>';
 
   newRow.append(cols);
@@ -109,6 +109,7 @@ function updateTableRow() {
     nome: $('#editName').val(),
     linkSite: $('#editLinkSite').val(),
     slogan: $('#editSlogan').val(),
+    checkbox: $('#editAtivo').is(':checked')
   }
 
   window.localStorage.setItem(id, JSON.stringify(dados));
@@ -146,10 +147,10 @@ function updateLocalStorageCheckbox(ref) {
   return location.reload();
 }
 
-function validateFields(nome, slogan, link) {
-  if (nome.length < 3 ||
-    slogan.length < 4 ||
-    link.length < 8) {
-    return false;
-  }
-}
+// function validateFields(nome, slogan, link) {
+//   if (nome.length < 3 ||
+//     slogan.length < 4 ||
+//     link.length < 8) {
+//     return false;
+//   }
+// }
